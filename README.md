@@ -1,2 +1,0 @@
-# bulkamaya
-online chat test
