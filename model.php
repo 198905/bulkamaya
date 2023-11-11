@@ -1,7 +1,5 @@
-
 <?php
 session_start();
-error_reporting(E_ALL);
 ini_set('display_errors', 1);
 try {
   $bdd = new PDO('mysql:host=localhost;dbname=databasemessages;charset=utf8', 
@@ -22,5 +20,4 @@ if (isset($_POST['message']) && ($_POST['message'] !== '')) {
   $stmt->bindValue(':msg', $msg);
   $stmt->bindValue(':pseudo', $pseudo);
   $success = $stmt->execute();
-
 }
