@@ -1,4 +1,5 @@
-
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,26 +12,15 @@
     </script>
     <title>Docnumet</title>
 </head>
-<body>
-    <div class="display">
-        <?php if (empty($_SESSION['name'])) { ?>
-        <div class="modal">
-            <p>Pseudo:</p>
-            <form action="" method="post" class="form">
-                <textarea name="pseudo" class="modalText"></textarea>
-                <button type="submit" class="buttonModal">Valider</button>
-            </form>
-            <?= $erreur ?>
-        </div>
-        <?php } ?>
-
-        <?php if ($id!=='') { ?>
         <div class="messages">
         </div>
 
         <div class="messagesType">
             <form  method="post"  id="form" name="message">
-                <input type="text" name="message" class="messageC">
+                <div class="textArea">
+                    <h1><br>:_</h1>
+                    <input type="text" name="message" class="messageC">
+                </div>
                 <input type="submit" value="Envoyer" class="messageEnvoyer" style="display:none;">
             </form>
             <div class="MicroAndFiles">
@@ -41,13 +31,14 @@
                     
                 </div>
             </div>
-            <form action="" method="post">
+            <form action="/id" method="post">
                 <button type="submit" name="sessionD">Deconnexion</button>
             </form>
         </div>
-        <?php 
-        } ?>
+        
     </div>    
     <script src='js.js'></script>
 </body>
+<!--php-->
 </html>
+<?php
