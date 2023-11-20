@@ -33,14 +33,3 @@ foreach ($messages as $msg) { ?>
         </div>
         <?php }}
         
-        
-        /*while($msg=$queryGet->fetch()){
-            $nameData=$msg['pseudo'];
-            $messageData=$msg['msg'];?>
-            <p id="nameSession">
-                <?=$nameData?>
-            </p>
-            <p id="message">
-                <?=$messageData?>     
-            </p>
-            <?php }*/
