@@ -1,5 +1,4 @@
-<?php session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +15,8 @@
         </div>
 
         <div class="messagesType">
-            <form  method="post"  id="form" name="message">
+            <form  method="post" class="a" id="form" name="message">
                 <div class="textArea">
-                    <h1><br>:_</h1>
                     <input type="text" name="message" class="messageC">
                 </div>
                 <input type="submit" value="Envoyer" class="messageEnvoyer" style="display:none;">
@@ -31,8 +29,8 @@
                     
                 </div>
             </div>
-            <form action="/id" method="post">
-                <button type="submit" name="sessionD">Deconnexion</button>
+            <form action="/logout" method="post" >
+                <button type="submit" name="sessionD" class='buttonModal' >Deconnexion</button>
             </form>
         </div>
         
@@ -42,3 +40,4 @@
 <!--php-->
 </html>
 <?php
+
