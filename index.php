@@ -1,40 +1,56 @@
 <?php
+
 session_start();
 require ('AltoRouter.php');
 $router = new AltoRouter();
-    if (isset($_POST['pseudo']) && ($_POST['pseudo'] !== '')) {
-        $_SESSION['name'] = htmlspecialchars(addslashes($_POST['pseudo']));
-        $id = $_POST['pseudo'];
-    }else if (isset($_POST['pseudo']) && ($_POST['pseudo'] == '') || (isset($_POST['sessionD']))) { //pb
-        unset($_SESSION['name']); 
-    }
 
-$router->map('GET', '/', function() { 
+if (isset($_POST['pseudo']) && ($_POST['pseudo'] !== '')) {
+    $_SESSION['name'] = htmlspecialchars(addslashes($_POST['pseudo']));
+    $id = $_POST['pseudo'];
+}
+///////////////////////ACCUEIL///////////////////////////////
+/////////////////////////////////////////////////////////////
+$router->map('GET', '/id', function() { 
+    session_destroy();
     require __DIR__ . '/id.php';
-});
-
-$router->map('POST', '/main', function() {
-    if (isset($_POST['pseudo']) && ($_POST['pseudo'] == '') || (isset($_POST['sessionD']))) { //pb
-        unset($_SESSION['name']); 
-        require __DIR__ . '/id.php';
-        session_destroy();
-        header("Location: /id"); // Redirect to the home page or another appropriate location
-    exit();
+    if(isset($_POST['pseudo'])&&($_POST['pseudo']=='')){
+        $_SESSION['name']='';
     }
+});
+///////////////////////MAIN///////////////////////////////
+//////////////////////////////////////////////////////////
+$router->map('POST', '/main', function() {
     if (isset($_POST['pseudo']) && ($_POST['pseudo'] !== '')) {
         require __DIR__ . '/main.php';   
         require __DIR__ . '/model.php'; 
         }
+    
+    else {
+        header("Location:/id");
+        exit();
+    }
+});
+///////////////////////LOGOUT///////////////////////////////
+/////////////////////////////////////////////////////////////// 
+
+$router->map('POST', '/logout', function() {
+     {
+        require __DIR__ . '/logout.php';   
+        if (isset($_POST['logout'])) {
+            $_SESSION['name']='';
+            session_destroy();
+            }
+    }
 });
 
 $match = $router->match();
-// Dispatch the route
 if ($match && is_callable($match['target'])) {
     call_user_func_array($match['target'], $match['params']);
 } else {
-    echo "<h1>non.</h1>";
-    var_dump($_SESSION['name']);
+    header("Location:/id");
+    exit();;
 } 
+
 
 
 /*session_start();
